@@ -4,28 +4,24 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    public class Grocery : Product
+    public class ProductKit : Product
     {
-        public Grocery(string name, int price, DateTime date, DateTime expdate)
+        private Product[] amount;
+        public ProductKit(string name, int price, Product[] amount, int n, DateTime expdate)
         {
             this.name = name;
             this.price = price;
-            this.date = date;
+            this.amount = new Product[n];
             this.expdate = expdate;
         }
-
-        public Grocery()
-        {
-        }
-
         public override void ShowInfo()
         {
-            Console.WriteLine("Название: {0}\nЦена: {1}\n Дата производства: {2}\n Срок годности: {3}\n", name, price, date, expdate);
+            Console.WriteLine("Название комплекта: {0}\n Цена: {1}\n Количество продуктов в комплекте: {2}\n", name, price, amount);
         }
 
         public override void ShowExpired()
         {
-            if (DateTime.Today > expdate)
+            if(DateTime.Today > expdate)
                 Console.WriteLine("У {0} закончился срок годности.", name);
             else Console.WriteLine("У {0} не закончился срок годности.", name);
         }
